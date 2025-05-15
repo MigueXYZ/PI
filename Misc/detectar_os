@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# Verifica se está a correr em bash
+if [ -n "$BASH_VERSION" ]; then
+    echo "Ambiente: Bash"
+
+    OS_NAME=$(uname -s)
+
+    case "$OS_NAME" in
+        Linux)
+            if [ -f /etc/os-release ]; then
+                . /etc/os-release
+                echo "Sistema operativo: $NAME ($ID)"
+                echo "Versão: $VERSION"
+            else
+                echo "Sistema operativo: Linux (desconhecido)"
+            fi
+            ;;
+        Darwin)
+            echo "Sistema operativo: macOS"
+            sw_vers 2>/dev/null
+            ;;
+        CYGWIN*|MINGW*|MSYS*)
+            echo "Sistema operativo: Windows (terminal compatível tipo Bash)"
+            ;;
+        *)
+            echo "Sistema operativo desconhecido: $OS_NAME"
+            ;;
+    esac
+
+# Caso esteja num ambiente PowerShell, mostra aviso e gera script temporário PowerShell
+elif [ -n "$PSVersionTable" ] || [ "$(ps -p $$ -o comm= 2>/dev/null)" = "powershell.exe" ]; then
+    echo "Ambiente: PowerShell"
+
+    echo "A gerar script PowerShell temporário..."
+    TEMP_SCRIPT="$(mktemp).ps1"
+
+    cat > "$TEMP_SCRIPT" << 'EOF'
+$os = Get-CimInstance -ClassName Win32_OperatingSystem
+Write-Output "Sistema operativo: $($os.Caption)"
+Write-Output "Versão: $($os.Version)"
+Write-Output "Arquitetura: $($os.OSArchitecture)"
+EOF
+
+    powershell -ExecutionPolicy Bypass -File "$TEMP_SCRIPT"
+    rm -f "$TEMP_SCRIPT"
+
+else
+    echo "Ambiente desconhecido. Este script requer bash ou PowerShell."
+fi
