@@ -43,20 +43,28 @@ import CodeBlock from "@/components/CodeBlock.vue";
           </article>
 
           <article class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-700">4. Reiniciar o Serviço</h3>
+            <h3 class="text-2xl font-semibold text-gray-700">4. Editar o ficheiro</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Agora que temos o ficheiro aberto no nano ou no editor à sua escolha temos de o editar.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+              No fim do ficheiro insira esta linha substituindo <-ip servidor-> pelo ip do servidor
+            </p>
+            <CodeBlock :code-content="'*.* @<-ip servidor->'">
+            </CodeBlock>
+            <p class="text-gray-600 leading-relaxed">
+              Nota: Não se esqueça de guardar o ficheiro!
+            </p>
+          </article>
+
+          <article class="space-y-6">
+            <h3 class="text-2xl font-semibold text-gray-700">5. Reiniciar o Serviço</h3>
             <p class="text-gray-600 leading-relaxed">
               Após alterar a configuração, reinicie o serviço:
             </p>
             <CodeBlock :code-content="`sudo systemctl restart rsyslog`" />
           </article>
 
-          <article class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-700">5. Monitorização dos Logs</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Para monitorar os logs em tempo real:
-            </p>
-            <CodeBlock :code-content="`tail -f /var/log/syslog`" />
-          </article>
         </div>
       </section>
     </div>
