@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import CodeBlock from "@/components/CodeBlock.vue";
 import ImageCard from "@/components/ImageCard.vue";
 
 const utilizador = ref("");
@@ -60,7 +59,7 @@ function enviarEmail() {
             <p class="text-gray-600 leading-relaxed">
               Após a instalação, abra a aplicação e na sidebar da esquerda clique em <span class="text-green-600"> "RuleSets" > "Default RuleSet" > "ForwardSyslog" > "Actions" > "Rsyslog"</span>. <br>
               Agora vá, no menu princpial a <span class="text-green-600"> "Syslog Taget Options" > "Syslog Send Mode"</span>, selecione "Use Single syslog server with optional backup server". <br>
-              Em<span class="text-green-600"> "Syslog Receiver Options" > "Syslog Server"</span> meta o ip do seu servidor. Ver imagem abaixo para mais detalhes. <br>
+              Em<span class="text-green-600"> "Syslog Receiver Options" > "Syslog Server"</span> insira o ip do seu servidor. Ver imagem abaixo para mais detalhes. <br>
               <ImageCard
                 src="/src/assets/configuracao_agente_rsyslog_windows.png"
                 alt="Configuração do agente rsyslog"

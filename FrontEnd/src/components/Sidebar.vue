@@ -8,13 +8,32 @@ const menuItems = [
   { label: "Configurações", route: "/settings", icon: "gear", sub:"fas" },
   { label: "Maquinas Linux", route: "/MaquinasLinux", icon: "database", sub:"fas"},
   { label: "Maquinas Windows", route: "/MaquinasWindows", icon:"windows", sub:"fab"},
+  // novo item Serviços sem rota, com subitens
+  { 
+    label: "Serviços", 
+    icon: "cogs", 
+    sub:"fas",
+    subItems: [
+      { label: "Serviço 1", route: "/servico1", icon: "wrench", sub:"fas" },
+      { label: "Serviço 2", route: "/servico2", icon: "tools", sub:"fas" },
+      { label: "Serviço 3", route: "/servico3", icon: "server", sub:"fas" },
+    ]
+  },
 ];
 
 const isOpen = ref(false);
 const activeRoute = ref("/home");
 
+// Estado para submenu Serviços
+const isServicesOpen = ref(false);
+
 const toggleSidebar = () => {
   isOpen.value = !isOpen.value;
+};
+
+// Alterna o submenu Serviços
+const toggleServices = () => {
+  isServicesOpen.value = !isServicesOpen.value;
 };
 
 const navigateTo = (route: string) => {
@@ -46,16 +65,56 @@ const navigateTo = (route: string) => {
       <nav class="flex-1 p-6">
         <ul class="space-y-4">
           <li v-for="(item, index) in menuItems" :key="index">
-            <a
-              href="#"
-              @click.prevent="navigateTo(item.route)"
-              class="flex items-center gap-6 p-4 rounded-lg transition-all duration-300 text-gray-300 hover:bg-gray-700 hover:text-white text-lg group"
-              :class="{ 'bg-gray-700 text-white': activeRoute === item.route }"
-            >
-              <!-- Ícone FontAwesome -->
-              <font-awesome-icon :icon="[item.sub, item.icon]" class="w-6 h-6" />
-              <span class="font-medium group-hover:ml-4 transition-all duration-300 ease-in-out">{{ item.label }}</span>
-            </a>
+            <!-- Categoria Serviços com submenu -->
+            <template v-if="item.label === 'Serviços'">
+              <button
+                class="flex items-center gap-6 p-4 rounded-lg w-full text-left hover:bg-gray-700 hover:text-white text-lg group"
+                @click="toggleServices"
+                :class="{ 'bg-gray-700 text-white': isServicesOpen }"
+              >
+                <font-awesome-icon :icon="[item.sub, item.icon]" class="w-6 h-6" />
+                <span class="font-medium group-hover:ml-4 transition-all duration-300 ease-in-out flex-1">
+                  {{ item.label }}
+                </span>
+                <!-- Ícone de seta para indicar aberto/fechado -->
+                <font-awesome-icon
+                  :icon="['fas', isServicesOpen ? 'chevron-up' : 'chevron-down']"
+                  class="w-4 h-4"
+                />
+              </button>
+              <ul
+                v-show="isServicesOpen"
+                class="ml-12 mt-2 space-y-2 border-l border-gray-700 pl-4"
+              >
+                <li
+                  v-for="(subItem, subIndex) in item.subItems"
+                  :key="subIndex"
+                >
+                  <a
+                    href="#"
+                    @click.prevent="navigateTo(subItem.route)"
+                    class="flex items-center gap-4 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white text-base"
+                    :class="{ 'bg-gray-700 text-white': activeRoute === subItem.route }"
+                  >
+                    <font-awesome-icon :icon="[subItem.sub, subItem.icon]" class="w-4 h-4" />
+                    <span>{{ subItem.label }}</span>
+                  </a>
+                </li>
+              </ul>
+            </template>
+
+            <!-- Outros itens normais -->
+            <template v-else>
+              <a
+                href="#"
+                @click.prevent="navigateTo(item.route)"
+                class="flex items-center gap-6 p-4 rounded-lg transition-all duration-300 text-gray-300 hover:bg-gray-700 hover:text-white text-lg group"
+                :class="{ 'bg-gray-700 text-white': activeRoute === item.route }"
+              >
+                <font-awesome-icon :icon="[item.sub, item.icon]" class="w-6 h-6" />
+                <span class="font-medium group-hover:ml-4 transition-all duration-300 ease-in-out">{{ item.label }}</span>
+              </a>
+            </template>
           </li>
         </ul>
       </nav>
@@ -75,22 +134,26 @@ const navigateTo = (route: string) => {
 </template>
 
 <style scoped>
-/* Estilos adicionais para tornar a sidebar mais elegante */
 aside {
   transition: all 0.3s ease-in-out;
 }
 
-nav ul li a {
+nav ul li a, nav ul li button {
   transition: all 0.2s ease-in-out;
   font-size: 1.1rem;
-  margin-bottom: 2px; /* Adiciona uma margem de 2px entre os itens */
+  margin-bottom: 2px;
+  width: 100%;
+  text-align: left;
 }
 
 button {
-  transition: all 0.2s ease-in-out;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
 }
 
 .group:hover .group-hover\:ml-4 {
-  margin-left: 1rem; /* Expande o texto da sidebar ao passar o mouse */
+  margin-left: 1rem;
 }
 </style>

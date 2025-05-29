@@ -89,7 +89,7 @@ function enviarEmail() {
     <!-- Formulário na Coluna Secundária -->
     <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 flex flex-col gap-6 self-start">
       <h2 class="text-2xl font-semibold text-gray-800">Configuração Remota</h2>
-      <p>Nós podemos fazer-lo por si!</p>
+      <p class="text-gray-800">Nós podemos fazer-lo por si!</p>
       <form class="flex flex-col gap-6" @submit.prevent="enviarEmail">
         <div>
           <label for="user" class="block text-gray-700 font-medium mb-1">Utilizador</label>
