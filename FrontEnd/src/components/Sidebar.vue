@@ -8,6 +8,7 @@ const menuItems = [
   { label: "Configurações", route: "/settings", icon: "gear", sub:"fas" },
   { label: "Maquinas Linux", route: "/MaquinasLinux", icon: "database", sub:"fas"},
   { label: "Maquinas Windows", route: "/MaquinasWindows", icon:"windows", sub:"fab"},
+  { label: "Switches Cisco", route: "/SwitchesCisco", icon:"globe", sub:"fas"},
   // novo item Serviços sem rota, com subitens
   { 
     label: "Serviços", 

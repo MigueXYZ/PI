@@ -83,72 +83,72 @@ function enviarEmail() {
     </div>
   </main>
   <!-- Formulário Flutuante -->
-  <div
-    class="fixed top-6 right-6 bg-white px-6 py-8 rounded-2xl shadow-2xl border border-gray-300 w-96 z-50 space-y-6"
-  >
+  <!-- Formulário Flutuante -->
+<div
+  class="fixed top-8 right-8 bg-white/95 backdrop-blur-sm px-6 py-8 rounded-2xl shadow-2xl border border-gray-200 w-96 z-50 space-y-6"
+>
+  <h2 class="text-xl font-bold text-gray-800">Configuração Remota</h2>
+  <p class="text-gray-600 text-sm">Se preferir, podemos configurar remotamente o seu sistema.</p>
+  
+  <form class="flex flex-col gap-4" @submit.prevent="enviarEmail">
+    <div>
+      <label for="utilizador" class="block text-sm font-medium text-gray-700">Utilizador</label>
+      <input
+        v-model="utilizador"
+        type="text"
+        id="utilizador"
+        class="w-full px-3 py-2 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800 bg-white"
+        placeholder="Administrador"
+        required
+      />
+    </div>
 
-    <h2 class="text-lg font-semibold text-gray-800 mb-4">Acesso Remoto</h2>
-    <p class="text-gray-800">Nós podemos fazer-lo por si!</p>
-    <form class="flex flex-col gap-4" @submit.prevent="enviarEmail">
-      <div>
-        <label for="utilizador" class="block text-sm text-gray-700">Utilizador</label>
-        <input
-          v-model="utilizador"
-          type="text"
-          id="utilizador"
-          class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
-          placeholder="Administrador"
-          required
-        />
-      </div>
+    <div>
+      <label for="palavraPasse" class="block text-sm font-medium text-gray-700">Palavra-passe</label>
+      <input
+        v-model="palavraPasse"
+        type="password"
+        id="palavraPasse"
+        class="w-full px-3 py-2 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800 bg-white"
+        placeholder="••••••••"
+        required
+      />
+    </div>
 
-      <div>
-        <label for="palavraPasse" class="block text-sm text-gray-700">Palavra-passe</label>
-        <input
-          v-model="palavraPasse"
-          type="text"
-          id="palavraPasse"
-          class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
-          placeholder="••••••••"
-          required
-        />
-      </div>
+    <div>
+      <label for="ip" class="block text-sm font-medium text-gray-700">IP / Código</label>
+      <input
+        v-model="ip"
+        type="text"
+        id="ip"
+        class="w-full px-3 py-2 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800 bg-white"
+        placeholder="192.168.1.100"
+        required
+      />
+    </div>
 
-      <div>
-        <label for="ip" class="block text-sm text-gray-700">IP / Código</label>
-        <input
-          v-model="ip"
-          type="text"
-          id="ip"
-          class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
-          placeholder="192.168.1.100"
-          required
-        />
-      </div>
-
-      <div>
-        <label for="tipo" class="block text-sm text-gray-700">Tipo</label>
-        <select
-          v-model="tipo"
-          id="tipo"
-          class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
-          required
-        >
-          <option disabled value="">Escolha</option>
-          <option value="Ambiente de Trabalho Remoto">Remoto (Windows)</option>
-          <option value="AnyDesk">AnyDesk</option>
-        </select>
-      </div>
-
-
-      <button
-        type="submit"
-        class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded font-semibold text-sm transition-colors"
+    <div>
+      <label for="tipo" class="block text-sm font-medium text-gray-700">Tipo</label>
+      <select
+        v-model="tipo"
+        id="tipo"
+        class="w-full px-3 py-2 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800 bg-white"
+        required
       >
-        Enviar
-      </button>
-    </form>
-  </div>
+        <option disabled value="">Escolha</option>
+        <option value="Ambiente de Trabalho Remoto">Remoto (Windows)</option>
+        <option value="AnyDesk">AnyDesk</option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-xl font-semibold text-sm transition-all"
+    >
+      Enviar
+    </button>
+  </form>
+</div>
 
 </template>
 
