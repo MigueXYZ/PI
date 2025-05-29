@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CodeBlock from "@/components/CodeBlock.vue";
+import ImageCard from "@/components/ImageCard.vue";
 </script>
 
 <template>
@@ -8,9 +9,9 @@ import CodeBlock from "@/components/CodeBlock.vue";
     <!-- Coluna Principal -->
     <div class="lg:col-span-2 space-y-16">
       <section>
-        <h1 class="text-4xl font-bold text-gray-800 mb-6">Configuração Básica do rSysLog</h1>
+        <h1 class="text-4xl font-bold text-gray-800 mb-6">Configuração Básica do rSysLog para Windows</h1>
         <p class="text-lg text-gray-600 leading-relaxed">
-          O <strong>rsyslog</strong> é uma ferramenta poderosa para coleta, armazenamento e envio de logs do sistema e aplicativos. Muito utilizada para monitorar eventos e diagnosticar problemas em servidores, é altamente configurável.
+          O <strong>rsyslog</strong> não é algo suportado pelo windows por defeito. Então precisamos de software extra para o fazer funcionar.
         </p>
       </section>
 
@@ -22,9 +23,12 @@ import CodeBlock from "@/components/CodeBlock.vue";
           <article class="space-y-6">
             <h3 class="text-2xl font-semibold text-gray-700">1. Instalação do rsyslog</h3>
             <p class="text-gray-600 leading-relaxed">
-              Para instalar o rsyslog no Linux (ex: Ubuntu), execute:
+              Ir a este <a href="https://www.rsyslog.com/windows-agent/windows-agent-download/">link</a> e instalar a versão mais recente do rsyslog suportada pela máquina.
+              <ImageCard
+                src="/src/assets/download_windows_rsyslog_agent.png"
+                alt="Download agente rsyslog para windows"
+              />
             </p>
-            <CodeBlock :code-content="`sudo apt update\nsudo apt install rsyslog`" />
           </article>
 
           <article class="space-y-6">

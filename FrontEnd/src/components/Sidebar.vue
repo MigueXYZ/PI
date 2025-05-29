@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import router from "../router";
 
 const menuItems = [
-  { label: "Início", route: "/", icon: "house" },
-  { label: "Configurações", route: "/settings", icon: "gear" },
-  { label: "Maquinas Linux", route: "/MaquinasLinux", icon: "database"},
+  { label: "Início", route: "/", icon: "house", sub:"fas"},
+  { label: "Configurações", route: "/settings", icon: "gear", sub:"fas" },
+  { label: "Maquinas Linux", route: "/MaquinasLinux", icon: "database", sub:"fas"},
+  { label: "Maquinas Windows", route: "/MaquinasWindows", icon:"windows", sub:"fab"},
 ];
 
 const isOpen = ref(false);
@@ -52,7 +53,7 @@ const navigateTo = (route: string) => {
               :class="{ 'bg-gray-700 text-white': activeRoute === item.route }"
             >
               <!-- Ícone FontAwesome -->
-              <font-awesome-icon :icon="['fas', item.icon]" class="w-6 h-6" />
+              <font-awesome-icon :icon="[item.sub, item.icon]" class="w-6 h-6" />
               <span class="font-medium group-hover:ml-4 transition-all duration-300 ease-in-out">{{ item.label }}</span>
             </a>
           </li>
