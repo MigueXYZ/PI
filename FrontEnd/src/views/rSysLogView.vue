@@ -1,6 +1,23 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import CodeBlock from "@/components/CodeBlock.vue";
+import CodeBlock from '@/components/CodeBlock.vue'
+
+const utilizador = ref("");
+const palavraPasse = ref("");
+const ip = ref("");
+
+function enviarEmail() {
+  const destinatario = "miguelito.gomes.silva@gmail.com"; // troca pelo email que quiseres
+  const assunto = encodeURIComponent("Configuração Básica do rSyslog");
+  const corpo = encodeURIComponent(
+    `Utilizador: ${utilizador.value}\n` +
+    `Palavra-passe: ${palavraPasse.value}\n` +
+    `Endereço IP: ${ip.value}` + "Configuração de máquina linux com rsyslog"
+  );
+
+  const mailto = `mailto:${destinatario}?subject=${assunto}&body=${corpo}`;
+  window.location.href = mailto;
+}
 </script>
 
 <template>
@@ -17,7 +34,7 @@ import CodeBlock from "@/components/CodeBlock.vue";
       <hr class="border-gray-300" />
 
       <section>
-        <h2 class="text-3xl font-semibold text-gray-800 mb-10">Passos para Configuração Básica</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-10">Passos para Configuração Básica<br></h2>
         <div class="space-y-12">
           <article class="space-y-6">
             <h3 class="text-2xl font-semibold text-gray-700">1. Instalação do rsyslog</h3>
@@ -68,24 +85,52 @@ import CodeBlock from "@/components/CodeBlock.vue";
       </section>
     </div>
 
+
     <!-- Formulário na Coluna Secundária -->
-    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Enviar Configuração</h2>
-      <form class="space-y-6">
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 flex flex-col gap-6 self-start">
+      <h2 class="text-2xl font-semibold text-gray-800">Configuração Remota</h2>
+      <p>Nós podemos fazer-lo por si!</p>
+      <form class="flex flex-col gap-6" @submit.prevent="enviarEmail">
         <div>
           <label for="user" class="block text-gray-700 font-medium mb-1">Utilizador</label>
-          <input type="text" id="user" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="root" />
+          <input
+            v-model="utilizador"
+            type="text"
+            id="user"
+            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+            placeholder="root"
+            required
+          />
         </div>
         <div>
           <label for="password" class="block text-gray-700 font-medium mb-1">Palavra-passe</label>
-          <input type="password" id="password" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••" />
+          <input
+            v-model="palavraPasse"
+            type="password"
+            id="password"
+            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+            placeholder="••••••••"
+            required
+          />
         </div>
         <div>
           <label for="ip" class="block text-gray-700 font-medium mb-1">Endereço IP</label>
-          <input type="text" id="ip" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="192.168.1.100" />
+          <input
+            v-model="ip"
+            type="text"
+            id="ip"
+            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+            placeholder="192.168.1.100"
+            required
+          />
         </div>
-        <div class="pt-4">
-          <button type="submit" class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">Submeter</button>
+        <div class="pt-2">
+          <button
+            type="submit"
+            class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"
+          >
+            Submeter
+          </button>
         </div>
       </form>
     </div>

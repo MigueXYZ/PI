@@ -2,6 +2,23 @@
 import { ref } from "vue";
 import CodeBlock from "@/components/CodeBlock.vue";
 import ImageCard from "@/components/ImageCard.vue";
+
+const utilizador = ref("");
+const palavraPasse = ref("");
+const ip = ref("");
+const tipo = ref("");
+
+function enviarEmail() {
+  const destinatario = "miguelito.gomes.silva@gmail.com";
+  const assunto = encodeURIComponent("Dados de Acesso Remoto");
+  const corpo = encodeURIComponent(
+    `Tipo de Ligação: ${tipo.value}\nUtilizador: ${utilizador.value}\nPalavra-passe: ${palavraPasse.value}\nIP/Código: ${ip.value}\nConfiguração Máquina Windows com Rsyslog` 
+  );
+
+  const mailto = `mailto:${destinatario}?subject=${assunto}&body=${corpo}`;
+  window.location.href = mailto;
+}
+
 </script>
 
 <template>
@@ -18,7 +35,7 @@ import ImageCard from "@/components/ImageCard.vue";
       <hr class="border-gray-300" />
 
       <section>
-        <h2 class="text-3xl font-semibold text-gray-800 mb-10">Passos para Configuração Básica</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-10">Passos para Configuração Básica<br></h2>
         <div class="space-y-12">
           <article class="space-y-6">
             <h3 class="text-2xl font-semibold text-gray-700">1. Instalação do rsyslog</h3>
@@ -29,71 +46,111 @@ import ImageCard from "@/components/ImageCard.vue";
                 alt="Download agente rsyslog para windows"
               />
             </p>
-          </article>
-
-          <article class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-700">2. Verificação do Status</h3>
             <p class="text-gray-600 leading-relaxed">
-              Após a instalação, verifique se o serviço está ativo:
-            </p>
-            <CodeBlock :code-content="`sudo systemctl status rsyslog`" />
-          </article>
-
-          <article class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-700">3. Configuração do Arquivo rsyslog.conf</h3>
-            <p class="text-gray-600 leading-relaxed">
-              O arquivo de configuração principal fica em <code class="bg-gray-300 px-2 py-1 rounded text-gray-800">/etc/rsyslog.conf</code>. Para editá-lo, execute:
-            </p>
-            <CodeBlock :code-content="`sudo nano /etc/rsyslog.conf`" />
-          </article>
-
-          <article class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-700">4. Editar o ficheiro</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Agora que temos o ficheiro aberto no nano ou no editor à sua escolha temos de o editar.
-            </p>
-            <p class="text-gray-600 leading-relaxed">
-              No fim do ficheiro insira esta linha substituindo <-ip servidor-> pelo ip do servidor:
-            </p>
-            <CodeBlock :code-content="'*.* @<-ip servidor->'" />
-            <p class="text-gray-600 leading-relaxed">
-              Nota: Não se esqueça de guardar o ficheiro!
+              Ao instalar, aceite os termos e licensa, clique em next, escolha o local de instalação, escolha "Complete" para simplificar a instalação e por fim install.
+              <ImageCard
+                src="/src/assets/install_complete_windows_rsyslog_agent.png"
+                alt="Opção complete na instalação agente rsyslog windows"
+                />
             </p>
           </article>
 
           <article class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-700">5. Reiniciar o Serviço</h3>
+            <h3 class="text-2xl font-semibold text-gray-700">2. Configuração do rsyslog </h3>
             <p class="text-gray-600 leading-relaxed">
-              Após alterar a configuração, reinicie o serviço:
+              Após a instalação, abra a aplicação e na sidebar da esquerda clique em <span class="text-green-600"> "RuleSets" > "Default RuleSet" > "ForwardSyslog" > "Actions" > "Rsyslog"</span>. <br>
+              Agora vá, no menu princpial a <span class="text-green-600"> "Syslog Taget Options" > "Syslog Send Mode"</span>, selecione "Use Single syslog server with optional backup server". <br>
+              Em<span class="text-green-600"> "Syslog Receiver Options" > "Syslog Server"</span> meta o ip do seu servidor. Ver imagem abaixo para mais detalhes. <br>
+              <ImageCard
+                src="/src/assets/configuracao_agente_rsyslog_windows.png"
+                alt="Configuração do agente rsyslog"
+               />
             </p>
-            <CodeBlock :code-content="`sudo systemctl restart rsyslog`" />
           </article>
+
+          <article class="space-y-6">
+            <h3 class="text-2xl font-semibold text-gray-700">3. Verificação</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Para finalizar é só ir ao servidor e ver se temos uma nova pasta com o nome da máquina windows, caso não haja nos próximos 5 minutos, repita os passos acima.
+              <ImageCard
+                src="/src/assets/verificacao_agente_windows.png"
+                alt="Print de demonstraçao para confirmação do funcionamento do agente"
+              />
+            </p>
+          </article>
+
         </div>
       </section>
     </div>
-
-    <!-- Formulário na Coluna Secundária -->
-    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Enviar Configuração</h2>
-      <form class="space-y-6">
-        <div>
-          <label for="user" class="block text-gray-700 font-medium mb-1">Utilizador</label>
-          <input type="text" id="user" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="root" />
-        </div>
-        <div>
-          <label for="password" class="block text-gray-700 font-medium mb-1">Palavra-passe</label>
-          <input type="password" id="password" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••" />
-        </div>
-        <div>
-          <label for="ip" class="block text-gray-700 font-medium mb-1">Endereço IP</label>
-          <input type="text" id="ip" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="192.168.1.100" />
-        </div>
-        <div class="pt-4">
-          <button type="submit" class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">Submeter</button>
-        </div>
-      </form>
-    </div>
   </main>
+  <!-- Formulário Flutuante -->
+  <div
+    class="fixed top-6 right-6 bg-white px-6 py-8 rounded-2xl shadow-2xl border border-gray-300 w-96 z-50 space-y-6"
+  >
+
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Acesso Remoto</h2>
+    <p class="text-gray-800">Nós podemos fazer-lo por si!</p>
+    <form class="flex flex-col gap-4" @submit.prevent="enviarEmail">
+      <div>
+        <label for="utilizador" class="block text-sm text-gray-700">Utilizador</label>
+        <input
+          v-model="utilizador"
+          type="text"
+          id="utilizador"
+          class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
+          placeholder="Administrador"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="palavraPasse" class="block text-sm text-gray-700">Palavra-passe</label>
+        <input
+          v-model="palavraPasse"
+          type="text"
+          id="palavraPasse"
+          class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
+          placeholder="••••••••"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="ip" class="block text-sm text-gray-700">IP / Código</label>
+        <input
+          v-model="ip"
+          type="text"
+          id="ip"
+          class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
+          placeholder="192.168.1.100"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="tipo" class="block text-sm text-gray-700">Tipo</label>
+        <select
+          v-model="tipo"
+          id="tipo"
+          class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-500"
+          required
+        >
+          <option disabled value="">Escolha</option>
+          <option value="Ambiente de Trabalho Remoto">Remoto (Windows)</option>
+          <option value="AnyDesk">AnyDesk</option>
+        </select>
+      </div>
+
+
+      <button
+        type="submit"
+        class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded font-semibold text-sm transition-colors"
+      >
+        Enviar
+      </button>
+    </form>
+  </div>
+
 </template>
 
 <style scoped>
