@@ -6,7 +6,6 @@ const utilizador = ref("");
 const palavraPasse = ref("");
 const ip = ref("");
 
-
 function enviarEmail() {
   const destinatario = "miguelito.gomes.silva@gmail.com";
   const assunto = encodeURIComponent("Dados de Acesso Remoto");
@@ -20,11 +19,11 @@ function enviarEmail() {
 </script>
 
 <template>
-  <main class="flex-1 p-8 overflow-auto bg-gray-100 min-h-screen grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <main class="flex-1 p-6 overflow-auto bg-gray-100 min-h-screen grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Coluna Principal -->
-    <div class="lg:col-span-2 space-y-16">
+    <div class="lg:col-span-2 space-y-6">
       <section>
-        <h1 class="text-4xl font-bold text-gray-800 mb-6">Configuração Básica do rSysLog em Linux</h1>
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Configuração Básica do rSysLog em Linux</h1>
         <p class="text-lg text-gray-600 leading-relaxed">
           O <strong>rsyslog</strong> é um daemon amplamente utilizado para captura e envio de logs em sistemas Linux.
         </p>
@@ -33,33 +32,36 @@ function enviarEmail() {
       <hr class="border-gray-300" />
 
       <section>
-        <h2 class="text-3xl font-semibold text-gray-800 mb-10">Passos para Configuração Básica</h2>
-        <div class="space-y-12">
-          <article class="space-y-6">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Passos para Configuração Básica</h2>
+        <div class="space-y-6">
+          <article class="space-y-3">
             <h3 class="text-2xl font-semibold text-gray-700">1. Instalação do rsyslog</h3>
             <p class="text-gray-600 leading-relaxed">Num terminal, executa:</p>
             <CodeBlock :code-content="`sudo apt update\nsudo apt install rsyslog`" />
           </article>
 
-          <article class="space-y-6">
+          <article class="space-y-3">
             <h3 class="text-2xl font-semibold text-gray-700">2. Verificação do Status</h3>
             <p class="text-gray-600 leading-relaxed">Para garantir que está ativo:</p>
             <CodeBlock :code-content="`sudo systemctl status rsyslog`" />
           </article>
 
-          <article class="space-y-6">
+          <article class="space-y-3">
             <h3 class="text-2xl font-semibold text-gray-700">3. Configuração do Arquivo</h3>
             <p class="text-gray-600 leading-relaxed">Edita o ficheiro principal:</p>
             <CodeBlock :code-content="`sudo nano /etc/rsyslog.conf`" />
           </article>
 
-          <article class="space-y-6">
+          <article class="space-y-3">
             <h3 class="text-2xl font-semibold text-gray-700">4. Linha de Configuração</h3>
-            <p class="text-gray-600 leading-relaxed">Adiciona no fim do ficheiro:</p>
+            <p class="text-gray-600 leading-relaxed">
+              Adiciona no fim do ficheiro: <br>
+              Substitua o <code>&lt;ip-do-servidor&gt;</code> pelo ip do seu servidor responsável por armazenar os logs
+            </p>
             <CodeBlock :code-content="'*.* @<ip-do-servidor>'" />
           </article>
 
-          <article class="space-y-6">
+          <article class="space-y-3">
             <h3 class="text-2xl font-semibold text-gray-700">5. Reiniciar o Serviço</h3>
             <p class="text-gray-600 leading-relaxed">Para aplicar as alterações:</p>
             <CodeBlock :code-content="`sudo systemctl restart rsyslog`" />
