@@ -38,5 +38,5 @@ if [[ "$OS_INFO" == *"Microsoft"* ]]; then
     exit 0
 fi
 
-echo "❌ Não foi possível identificar o sistema operativo remotamente."
+echo "Não foi possível identificar o sistema operativo remotamente."
 exit 2

@@ -12,12 +12,11 @@ const menuItems = [
   // novo item Serviços sem rota, com subitens
   { 
     label: "Serviços", 
-    icon: "cogs", 
+    icon: "bars",
     sub:"fas",
     subItems: [
-      { label: "Serviço 1", route: "/servico1", icon: "wrench", sub:"fas" },
-      { label: "Serviço 2", route: "/servico2", icon: "tools", sub:"fas" },
-      { label: "Serviço 3", route: "/servico3", icon: "server", sub:"fas" },
+      { label: "MySQL", route: "/mysql", icon: "database", sub:"fas" },
+      { label: "Apache", route: "/apache", icon: "feather", sub:"fas" },
     ]
   },
 ];

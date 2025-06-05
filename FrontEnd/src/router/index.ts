@@ -3,6 +3,7 @@ import rSysLogView from '@/views/rSysLogView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import windowsView from '@/views/windowsView.vue'
 import switchesCiscoView from '@/views/switchesCiscoView.vue'
+import mySqlView from '@/views/MySqlView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path:'/SwitchesCisco',
       name:'SwitchesCisco',
       component:switchesCiscoView,
+    },
+    {
+      path:'/mysql',
+      name:'MySQL',
+      component:mySqlView,
     },
   ],
 })
