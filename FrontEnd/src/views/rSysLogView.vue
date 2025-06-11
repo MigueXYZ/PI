@@ -73,7 +73,7 @@ function enviarEmail() {
 
   <!-- Formulário Flutuante -->
   <div
-    class="fixed top-8 right-8 bg-white/95 backdrop-blur-sm px-6 py-8 rounded-2xl shadow-2xl border border-gray-200 w-96 z-50 space-y-6"
+    class="fixed top-8 right-8 bg-white/95 backdrop-blur-sm px-6 py-8 rounded-2xl shadow-2xl border border-gray-200 w-96 z-50 space-y-6 z-auto"
   >
     <h2 class="text-xl font-bold text-gray-800">Configuração Remota</h2>
     <p class="text-gray-600 text-sm">Se preferir, podemos configurar remotamente o seu sistema.</p>

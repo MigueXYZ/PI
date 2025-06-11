@@ -123,7 +123,7 @@ const navigateTo = (route: string) => {
     <!-- Conteúdo Principal -->
     <main class="flex-1 bg-gray-100 p-8 transition ml-72 lg:ml-72">
       <button
-        class="lg:hidden bg-blue-500 text-white px-5 py-3 rounded-lg shadow-md mb-6"
+        class="lg:hidden !bg-green-600 !text-white px-5 py-3 rounded-lg shadow-md mb-6"
         @click="toggleSidebar"
       >
         ☰ Abrir Menu
