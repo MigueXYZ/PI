@@ -40,7 +40,7 @@ function enviarEmail() {
           </p>
 
           <a
-            href="/configurar_rsyslog.sh"
+            href="/bashscripts/configurar_rsyslog.sh"
             download
             class="inline-block !bg-blue-600 hover:bg-green-700 !text-white !hover:text-black px-4 py-2 rounded-md font-semibold text-sm transition-all"
           >
