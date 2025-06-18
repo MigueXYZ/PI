@@ -38,13 +38,28 @@ function enviarEmail() {
           <p class="text-gray-600 leading-relaxed">
             Se estás a usar Ubuntu ou outra distribuição baseada em Debian, podes automatizar toda a configuração com este script.
           </p>
-
+          <div class="max-w-xl mx-auto p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 rounded-md shadow-md">
+            <div class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-yellow-500 mt-1" fill="none" stroke="currentColor" stroke-width="2"
+                   viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 1010 10A10 10 0 0012 2z"/>
+              </svg>
+              <div>
+                <p><span class="font-bold">ATENÇÃO:</span> O script pode alterar as configurações do utilizador!</p>
+              </div>
+            </div>
+          </div>
+          <br>  
           <a
             href="/bashscripts/configurar_rsyslog.sh"
             download
-            class="inline-block !bg-blue-600 hover:bg-green-700 !text-white !hover:text-black px-4 py-2 rounded-md font-semibold text-sm transition-all"
+            class="inline-flex items-center gap-3 !p-2 m-2 rounded-sm font-bold text-lg shadow-lg transition duration-200 bg-blue-600 !text-white hover:bg-green-600 hover:text-black"
           >
-            ⬇️ Fazer Download do Script
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 242.7-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7 288 32zM64 352c-35.3 0-64 28.7-64 64l0 32c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-32c0-35.3-28.7-64-64-64l-101.5 0-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352 64 352zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+            </svg>
+            <span>Fazer Download do Script</span>
           </a>
 
           <div class="bg-gray-100 rounded-xl text-sm text-gray-800 mt-4">
