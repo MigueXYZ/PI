@@ -52,7 +52,7 @@ function enviarEmail() {
             <CodeBlock :code-content="`chmod +x configurar_rsyslog.sh
         sudo ./configurar_rsyslog.sh 192.168.1.100`" />
             <p class="text-gray-600 mt-2">
-              Substitui <code>192.168.1.100</code> pelo IP do teu servidor de logs. O script instala e configura tudo automaticamente.
+              Substitua <code>192.168.1.100</code> pelo IP do seu servidor de logs. O script instala e configura tudo automaticamente.
             </p>
           </div>
         </article>

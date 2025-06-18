@@ -32,6 +32,28 @@ function enviarEmail() {
       <hr class="border-gray-300" />
 
       <section>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Configuração Automática</h2>
+        <article class="space-y-6">
+          <h3 class="text-2xl font-semibold text-gray-700">4. Script Automático (Linux)</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Se estás a usar Ubuntu ou outra distribuição baseada em Debian, podes automatizar toda a configuração com este script.<br>
+            <STRONG> ⚠️ ATENÇÃO: </STRONG> O script pode alterar as configurações do utilizador!
+          </p>
+
+          <a
+            href="/bashscripts/configurar_mysql_logs.sh"
+            download
+            class="inline-block !bg-blue-600 hover:bg-green-700 !text-white !hover:text-black px-4 py-2 rounded-md font-semibold text-sm transition-all"
+          >
+            ⬇️ Fazer Download do Script
+          </a>
+
+          <div class="bg-gray-100 rounded-xl text-sm text-gray-800 mt-4">
+            <p class="mb-2 font-semibold">Como usar:</p>
+            <CodeBlock :code-content="`chmod +x configurar_mysql_logs.sh
+        sudo ./configurar_mysql_logs.sh`" />
+          </div>
+        </article>
         <h2 class="text-3xl font-semibold text-gray-800 mb-10">Passos para Configuração Básica</h2>
         <div class="space-y-12">
           <!-- Etapa 1 -->
