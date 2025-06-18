@@ -7,10 +7,10 @@ const palavraPasse = ref("");
 const ip = ref("");
 
 function enviarEmail() {
-  const destinatario = "miguelito.gomes.silva@gmail.com";
+  const destinatario = "2221462@my.ipleiria.pt, 2222970@my.ipleiria.pt";
   const assunto = encodeURIComponent("Dados de Acesso Remoto");
   const corpo = encodeURIComponent(
-    `Tipo de Ligação: ${tipo.value}\nUtilizador: ${utilizador.value}\nPalavra-passe: ${palavraPasse.value}\nIP/Código: ${ip.value}\nConfiguração MySQL`
+    `Utilizador: ${utilizador.value}\nPalavra-passe: ${palavraPasse.value}\nIP/Código: ${ip.value}\nConfiguração MySQL`
   );
 
   const mailto = `mailto:${destinatario}?subject=${assunto}&body=${corpo}`;
@@ -23,7 +23,7 @@ function enviarEmail() {
     <!-- Coluna Principal -->
     <div class="lg:col-span-2 space-y-16">
       <section>
-        <h1 class="text-4xl font-bold text-gray-800 mb-6">Configuração do rSysLog para MySQL</h1>
+        <h1 class="text-4xl font-bold text-gray-800 mb-6">Configuração do rSysLog para APpache</h1>
         <p class="text-lg text-gray-600 leading-relaxed">
           Recolher os logs de MySQL para organizá-los no mesmo loccal como forma de centralização.
         </p>
@@ -36,39 +36,56 @@ function enviarEmail() {
         <div class="space-y-12">
           <!-- Etapa 1 -->
           <article class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-700">1. Edição do ficheiro conf do mysql</h3>
+            <h3 class="text-2xl font-semibold text-gray-700">1. Edição do ficheiro conf do apache</h3>
 
             <p class="text-gray-800">1º Passo - Abrir o ficheiro</p>
-            <CodeBlock :code-content="`sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf`" />
+            <CodeBlock :code-content="`sudo nano /etc/apache2/sites-available/000-default.conf`" />
 
             <p class="text-gray-800 mt-4">2º Passo - Editar o ficheiro para ficar como este:</p>
-            <CodeBlock :code-content="`[mysqld]
-                  syslog = 1
-                  log_error = syslog
-                  general_log = 1
-                  general_log_file = syslog
-                  slow_query_log = 1
-                  slow_query_log_file = syslog`" />
+            <CodeBlock :code-content='`
+              <VirtualHost *:80>
+                  # ... outras diretivas ...
+
+                  # Configuração de logs para syslog
+                  ErrorLog "syslog:local1"
+                  CustomLog "syslog:local2" combined
+
+                  # ... outras diretivas ...
+              </VirtualHost>
+            `' />
+            <p class="text-gray-800">3º Passo - Criar um ficheiro conf de apache</p>
+            <CodeBlock :code-content="`sudo nano /etc/rsyslog.d/20-apache.conf`" />
+
+            <p class="text-gray-800 mt-4">2º Passo - Editar o ficheiro para ficar como este: (substitua <code>&lt;ip-servidor&gt;</code> pelo ip do seu servidor)</p>
+            <CodeBlock :code-content='`
+              # Enviar para servidor remoto (ajuste o IP)
+              local1.* @<ip-servidor>:514
+              local2.* @<ip-servidor>:514
+            `' />
           </article>
 
           <!-- Etapa 2 -->
           <article class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-700">2. Reiniciar o MySQL</h3>
+            <h3 class="text-2xl font-semibold text-gray-700">2. Reiniciar o Apache r Rsyslog</h3>
             <p class="text-gray-800">
-              Reinicie o MySQL com este comando:
+              Reinicie o Apache com este comando:
             </p>
-            <CodeBlock :code-content="`sudo systemctl restart mysql`" />
+            <CodeBlock :code-content="`sudo systemctl restart apache2`" />
+            <p class="text-gray-800">
+              Reinicie o Rsyslog com este comando:
+            </p>
+            <CodeBlock :code-content="`sudo systemctl restart rsyslog`" />
           </article>
           <article class="space-y-6">
             <h3 class="text-2xl font-semibold text-gray-700">
               3. Verifique se ficou bem configurado
             </h3>
             <p class="text-gray-800">
-             Verifique se o ficheiro do mysql tem algo, caso não tenha sido criado tente o seguinte comando:
+             Verifique se o ficheiro do apache existe, caso não tenha sido criado tente o seguinte comando:
             </p>
-            <CodeBlock :code-content='`logger -t mysql "Teste de log do MySQL" `' />
+            <CodeBlock :code-content='`curl -I http://localhost`' />
             <p class="text-gray-800">
-              Verifique se o ficheiro do mysql tem lá "Teste de log do MySQL"
+              Verifique se o ficheiro foi criado e se tem o respetivo log.
              </p>
           </article>
         </div>

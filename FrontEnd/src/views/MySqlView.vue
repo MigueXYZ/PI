@@ -7,10 +7,10 @@ const palavraPasse = ref("");
 const ip = ref("");
 
 function enviarEmail() {
-  const destinatario = "miguelito.gomes.silva@gmail.com";
+  const destinatario = "2221462@my.ipleiria.pt, 2222970@my.ipleiria.pt";
   const assunto = encodeURIComponent("Dados de Acesso Remoto");
   const corpo = encodeURIComponent(
-    `Tipo de Ligação: ${tipo.value}\nUtilizador: ${utilizador.value}\nPalavra-passe: ${palavraPasse.value}\nIP/Código: ${ip.value}\nConfiguração MySQL`
+    `Utilizador: ${utilizador.value}\nPalavra-passe: ${palavraPasse.value}\nIP/Código: ${ip.value}\nConfiguração MySQL`
   );
 
   const mailto = `mailto:${destinatario}?subject=${assunto}&body=${corpo}`;

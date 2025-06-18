@@ -54,7 +54,7 @@ const navigateTo = (route: string) => {
       <div class="p-6 bg-gray-800 flex items-center justify-between border-b border-gray-700">
         <h1 class="text-xl font-semibold tracking-wide">Dashboard</h1>
         <button
-          class="lg:hidden text-gray-400 hover:text-white focus:outline-none"
+          class="text-gray-400 hover:text-white focus:outline-none"
           @click="toggleSidebar"
         >
           ✖

@@ -7,7 +7,7 @@ const palavraPasse = ref("");
 const ip = ref("");
 
 function enviarEmail() {
-  const destinatario = "miguelito.gomes.silva@gmail.com";
+  const destinatario = "2221462@my.ipleiria.pt, 2222970@my.ipleiria.pt";
   const assunto = encodeURIComponent("Dados de Acesso Remoto");
   const corpo = encodeURIComponent(
     `Utilizador: ${utilizador.value}\nPalavra-passe: ${palavraPasse.value}\nIP/Código: ${ip.value}\nConfiguração Máquina Linux com Rsyslog`
@@ -32,7 +32,31 @@ function enviarEmail() {
       <hr class="border-gray-300" />
 
       <section>
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Passos para Configuração Básica</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Configuração Automática</h2>
+        <article class="space-y-6">
+          <h3 class="text-2xl font-semibold text-gray-700">4. Script Automático (Linux)</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Se estás a usar Ubuntu ou outra distribuição baseada em Debian, podes automatizar toda a configuração com este script.
+          </p>
+
+          <a
+            href="/configurar_rsyslog.sh"
+            download
+            class="inline-block !bg-blue-600 hover:bg-green-700 !text-white !hover:text-black px-4 py-2 rounded-md font-semibold text-sm transition-all"
+          >
+            ⬇️ Fazer Download do Script
+          </a>
+
+          <div class="bg-gray-100 rounded-xl text-sm text-gray-800 mt-4">
+            <p class="mb-2 font-semibold">Como usar:</p>
+            <CodeBlock :code-content="`chmod +x configurar_rsyslog.sh
+        sudo ./configurar_rsyslog.sh 192.168.1.100`" />
+            <p class="text-gray-600 mt-2">
+              Substitui <code>192.168.1.100</code> pelo IP do teu servidor de logs. O script instala e configura tudo automaticamente.
+            </p>
+          </div>
+        </article>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Passos para Configuração Básica Manual</h2>
         <div class="space-y-6">
           <article class="space-y-3">
             <h3 class="text-2xl font-semibold text-gray-700">1. Instalação do rsyslog</h3>
@@ -70,6 +94,7 @@ function enviarEmail() {
       </section>
     </div>
   </main>
+
 
   <!-- Formulário Flutuante -->
   <div
