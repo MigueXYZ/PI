@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import Sidebar from "@/components/Sidebar.vue";
+
+const isActiveRoute = (route: string) => {
+  return route === window.location.pathname;
+};
 </script>
 
 <template>

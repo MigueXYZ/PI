@@ -6,7 +6,7 @@ import router from "../router";
 const menuItems = [
   { label: "Início", route: "/", icon: "house", sub: "fas" },
   { label: "Configurações", route: "/settings", icon: "gear", sub: "fas" },
-  { label: "Maquinas Linux", route: "/MaquinasLinux", icon: "database", sub: "fas" },
+  { label: "Maquinas Linux", route: "/MaquinasLinux", icon: "linux", sub: "fab" },
   { label: "Maquinas Windows", route: "/MaquinasWindows", icon: "windows", sub: "fab" },
   { label: "Switches Cisco", route: "/SwitchesCisco", icon: "globe", sub: "fas" },
   {
@@ -20,7 +20,7 @@ const menuItems = [
   },
 ];
 
-const isOpen = ref(true);
+const isOpen = ref(false);
 const activeRoute = ref("/home");
 const isServicesOpen = ref(false);
 
@@ -36,8 +36,17 @@ const navigateTo = (route: string) => {
   activeRoute.value = route;
   router.push(route);
 };
-</script>
 
+const isActiveRoute = (route: string) => {
+  return activeRoute.value === route;
+};
+
+const isHomePage = () => {
+  console.log(router.currentRoute.value.name == 'home');
+  return router.currentRoute.value.name == 'home';
+};
+
+</script>
 <template>
   <div class="flex min-h-screen">
     <!-- Sidebar -->
@@ -54,7 +63,7 @@ const navigateTo = (route: string) => {
           ✖
         </button>
       </div>
-
+      <button @click="isHomePage()">afpiuawfhask</button>
       <nav class="flex-1 p-6">
         <ul class="space-y-4">
           <li v-for="(item, index) in menuItems" :key="index">
@@ -113,7 +122,7 @@ const navigateTo = (route: string) => {
       :class="{ 'ml-72': isOpen, 'ml-0': !isOpen }"
     >
       <button
-        class="!bg-green-600 !text-white px-5 py-3 rounded-lg shadow-md mb-6"
+        class="!bg-green-600 !text-white px-5 py-3 rounded-lg shadow-md mb-6 !{{ isHomePage() ? 'hidden' : '' }}"
         @click="toggleSidebar"
       >
         ☰ Abrir Menu
