@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import Sidebar from "@/components/Sidebar.vue";
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import Sidebar from '@/components/Sidebar.vue'
 
-const isActiveRoute = (route: string) => {
-  return route === window.location.pathname;
-};
+const route = useRoute()
+
+const isDashboard = computed(() => route.name === 'home')
 </script>
 
 <template>
   <div class="flex w-full h-screen overflow-hidden">
-    <Sidebar />
-    <main class="flex-1 h-full overflow-auto bg-gray-50 p-6 lg:pl-64 transition-all duration-300">
+    <Sidebar :class="{ hidden: isDashboard }" />
+    <main
+      class="flex-1 h-full overflow-auto bg-gray-50 p-6 transition-all duration-300"
+      :class="{ 'lg:pl-64': !isDashboard }"
+    >
       <router-view />
     </main>
   </div>

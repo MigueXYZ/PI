@@ -48,7 +48,8 @@ const isHomePage = () => {
 
 </script>
 <template>
-  <div class="flex min-h-screen">
+  <div class="flex min-h-screen" :class="{ hidden: isHomePage() }">
+
     <!-- Sidebar -->
     <aside
       class="w-72 h-screen bg-gray-900 text-white flex flex-col fixed z-20 transition-transform transform shadow-xl"
@@ -63,7 +64,6 @@ const isHomePage = () => {
           ✖
         </button>
       </div>
-      <button @click="isHomePage()">afpiuawfhask</button>
       <nav class="flex-1 p-6">
         <ul class="space-y-4">
           <li v-for="(item, index) in menuItems" :key="index">
@@ -104,8 +104,8 @@ const isHomePage = () => {
               <a
                 href="#"
                 @click.prevent="navigateTo(item.route)"
-                class="flex items-center gap-6 p-4 rounded-lg transition-all duration-300 text-gray-300 hover:bg-gray-700 hover:text-white text-lg group"
-                :class="{ 'bg-gray-700 text-white': activeRoute === item.route }"
+                class="flex items-center gap-6 p-4 rounded-lg transition-all duration-300 text-gray-300 hover:bg-gray-700 hover:text-white text-lg group "
+
               >
                 <font-awesome-icon :icon="[item.sub, item.icon]" class="w-6 h-6" />
                 <span class="font-medium group-hover:ml-4 transition-all duration-300 ease-in-out">{{ item.label }}</span>
@@ -122,7 +122,9 @@ const isHomePage = () => {
       :class="{ 'ml-72': isOpen, 'ml-0': !isOpen }"
     >
       <button
-        class="!bg-green-600 !text-white px-5 py-3 rounded-lg shadow-md mb-6 !{{ isHomePage() ? 'hidden' : '' }}"
+        v-if="!isHomePage()"
+        class="!bg-green-600 !text-white px-5 py-3 rounded-lg shadow-md mb-6"
+      
         @click="toggleSidebar"
       >
         ☰ Abrir Menu

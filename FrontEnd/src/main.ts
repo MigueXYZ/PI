@@ -10,14 +10,12 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+library.add(faHouse, faGear, faDatabase, faWindows, faLinux ,faGlobe, faBars, faFeather)
+
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-
-library.add(faHouse, faGear, faDatabase, faWindows, faLinux ,faGlobe, faBars, faFeather)
-createApp(App)
-  .component('font-awesome-icon', FontAwesomeIcon) // Registra o FontAwesomeIcon globalmente
-  .mount('#app')
+app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.mount('#app')
