@@ -36,7 +36,7 @@ const navigateTo = (route: string) => {
   router.push(route);
 };
 
-const isActiveRoute = (route: string) => {
+const isActiveRoute = (route?: string) => {
   return activeRoute.value === route;
 };
 
@@ -102,7 +102,7 @@ const isHomePage = () => {
             <template v-else>
               <a
                 href="#"
-                @click.prevent="navigateTo(item.route)"
+                @click.prevent="item.route && navigateTo(item.route!)"
                 class="flex items-center gap-6 p-4 rounded-lg transition-all duration-300 text-gray-300 hover:bg-gray-700 hover:text-white text-lg group "
 
               >
