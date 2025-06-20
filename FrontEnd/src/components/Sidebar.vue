@@ -5,7 +5,6 @@ import router from "../router";
 
 const menuItems = [
   { label: "Início", route: "/", icon: "house", sub: "fas" },
-  { label: "Configurações", route: "/settings", icon: "gear", sub: "fas" },
   { label: "Maquinas Linux", route: "/MaquinasLinux", icon: "linux", sub: "fab" },
   { label: "Maquinas Windows", route: "/MaquinasWindows", icon: "windows", sub: "fab" },
   { label: "Switches Cisco", route: "/SwitchesCisco", icon: "globe", sub: "fas" },
