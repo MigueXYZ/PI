@@ -90,7 +90,6 @@ corpo
 
             <p class="text-gray-800 mt-4">2º Passo - Editar o ficheiro para ficar como este:</p>
             <CodeBlock :code-content="`[mysqld]
-                  syslog = 1
                   log_error = syslog
                   general_log = 1
                   general_log_file = syslog

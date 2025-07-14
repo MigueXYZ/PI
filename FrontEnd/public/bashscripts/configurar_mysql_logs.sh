@@ -9,7 +9,6 @@ echo " A escrever configuração em $FICHEIRO_CONF..."
 
 sudo tee "$FICHEIRO_CONF" > /dev/null <<EOF
 [mysqld]
-syslog = 1
 log_error = syslog
 general_log = 1
 general_log_file = syslog

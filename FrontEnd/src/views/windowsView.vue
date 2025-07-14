@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ImageCard from "@/components/ImageCard.vue";
+import downloadImg from "@/assets/download_windows_rsyslog_agent.png";
+import installImg from "@/assets/install_complete_windows_rsyslog_agent.png";
+import configImg from "@/assets/configuracao_agente_rsyslog_windows.png";
+import verifyImg from "@/assets/verificacao_agente_windows.png";
+
 
 const utilizador = ref("");
 const palavraPasse = ref("");
@@ -41,16 +46,17 @@ function enviarEmail() {
             <p class="text-gray-600 leading-relaxed">
               Ir a este <a href="https://www.rsyslog.com/windows-agent/windows-agent-download/">link</a> e instalar a versão mais recente do rsyslog suportada pela máquina.
               <ImageCard
-                src="/src/assets/download_windows_rsyslog_agent.png"
+                :src="downloadImg"
                 alt="Download agente rsyslog para windows"
               />
+
             </p>
             <p class="text-gray-600 leading-relaxed">
               Ao instalar, aceite os termos e licensa, clique em next, escolha o local de instalação, escolha "Complete" para simplificar a instalação e por fim install.
               <ImageCard
-                src="/src/assets/install_complete_windows_rsyslog_agent.png"
+                :src="installImg"
                 alt="Opção complete na instalação agente rsyslog windows"
-                />
+              />
             </p>
           </article>
 
@@ -61,9 +67,9 @@ function enviarEmail() {
               Agora vá, no menu princpial a <span class="text-green-600"> "Syslog Taget Options" > "Syslog Send Mode"</span>, selecione "Use Single syslog server with optional backup server". <br>
               Em<span class="text-green-600"> "Syslog Receiver Options" > "Syslog Server"</span> insira o ip do seu servidor. Ver imagem abaixo para mais detalhes. <br>
               <ImageCard
-                src="/src/assets/configuracao_agente_rsyslog_windows.png"
+                :src="configImg"
                 alt="Configuração do agente rsyslog"
-               />
+              />
             </p>
           </article>
 
@@ -72,7 +78,7 @@ function enviarEmail() {
             <p class="text-gray-600 leading-relaxed">
               Para finalizar é só ir ao servidor e ver se temos uma nova pasta com o nome da máquina windows, caso não haja nos próximos 5 minutos, repita os passos acima.
               <ImageCard
-                src="/src/assets/verificacao_agente_windows.png"
+                :src="verifyImg"
                 alt="Print de demonstraçao para confirmação do funcionamento do agente"
               />
             </p>
