@@ -1,3 +1,14 @@
+<script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function navigateTo(path) {
+  router.push(path)
+}
+</script>
+
+
 <template>
   <div class="w-full min-h-screen flex justify-center items-start bg-gray-50 px-4 py-10">
     <div class="w-full max-w-5xl bg-white shadow-lg text-center rounded-xl p-6">
