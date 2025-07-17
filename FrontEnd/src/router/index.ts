@@ -5,6 +5,7 @@ import windowsView from '@/views/windowsView.vue'
 import switchesCiscoView from '@/views/switchesCiscoView.vue'
 import mySqlView from '@/views/MySqlView.vue'
 import apacheView from '@/views/ApacheView.vue'
+import autoToolView from '@/views/AutoToolView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path:'/apache',
       name:'Apache',
       component:apacheView
+    },
+    {
+      path:'/autotool',
+      name:'AutoTool',
+      component :autoToolView
     },
   ],
 })
